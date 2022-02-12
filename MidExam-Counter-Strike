@@ -1,0 +1,50 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Numerics;
+
+namespace DateYime
+{
+    class Program
+    {
+
+        static void Main(string[] args)
+        {
+            int initialEnergy = int.Parse(Console.ReadLine());
+            string command;
+            int wonBattles = 0;
+            int leftEnergy = initialEnergy;
+            
+            while ((command=Console.ReadLine())!="End of battle")
+            {
+                
+                int distance = int.Parse(command);
+                
+                if (leftEnergy<distance||leftEnergy ==0)
+                {
+                    Console.WriteLine($"Not enough energy! Game ends with {wonBattles} " +
+                        $"won battles and {leftEnergy} energy");
+                    return;
+                }
+                else
+                {
+                leftEnergy=initialEnergy- distance;
+                wonBattles++;
+
+                }
+                if (wonBattles%3==0)
+                {
+                    leftEnergy += wonBattles;
+                }
+                initialEnergy = leftEnergy;
+                
+            }
+            Console.WriteLine($"Won battles: {wonBattles}. Energy left: {initialEnergy}");
+
+        }
+    }
+}
+
+
+
+
