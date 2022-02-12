@@ -1,0 +1,43 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Numerics;
+
+namespace DateYime
+{
+    class Program
+    {
+
+        static void Main(string[] args)
+        {
+            decimal studentsNumber = int.Parse(Console.ReadLine());
+            decimal lecturesNumber = int.Parse(Console.ReadLine());
+            decimal additionalBonus = int.Parse(Console.ReadLine());
+
+            decimal maxBonus = 0;
+            decimal maxAttendances = 0;
+            decimal totalBonus = 0;
+
+            for (int i = 1; i <= studentsNumber; i++)
+            {
+                int attendancesNumberForStudent = int.Parse(Console.ReadLine());
+
+                totalBonus = Math.Ceiling((attendancesNumberForStudent / lecturesNumber) * (5 + additionalBonus));
+
+                if (totalBonus>=maxBonus)
+                {
+                    maxBonus = totalBonus;
+                    maxAttendances = attendancesNumberForStudent;
+                }
+
+
+            }
+            Console.WriteLine($"Max Bonus: {maxBonus}.");
+            Console.WriteLine($"The student has attended {maxAttendances} lectures.");
+        }
+    }
+}
+
+
+
+
