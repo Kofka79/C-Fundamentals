@@ -1,0 +1,64 @@
+using System;
+using System.Linq;
+using System.Numerics;
+
+namespace DateYime
+{
+    class Program
+    {
+
+        static void Main(string[] args)
+        {
+            string type = string.Empty;
+            double sum = 0;
+            
+
+            while (true)
+            {
+                type = Console.ReadLine();
+                if (type=="special" || type=="regular")
+                {
+                    break;
+                }
+                double price = double.Parse(type);
+                if (price<0)
+                {
+                    Console.WriteLine($"Invalid price!");
+                    continue;
+                }
+                
+                    sum += price;
+                
+                
+                
+            }
+               double taxes = 0.2 * sum;
+               double finalPrice = sum+taxes;
+            if (finalPrice == 0)
+            {
+                Console.WriteLine($"Invalid order!");
+            }
+            else if (finalPrice > 0)
+            {
+                Console.WriteLine($"Congratulations you've just bought a new computer!");
+                Console.WriteLine($"Price without taxes: {sum:f2}$");
+                Console.WriteLine($"Taxes: {taxes:f2}$");
+                Console.WriteLine($"-----------");
+
+                if (type == "special")
+                {
+                   
+                    Console.WriteLine($"Total price: {(finalPrice*0.9):f2}$");
+                }
+                else
+                {
+                  
+                    Console.WriteLine($"Total price: {finalPrice:f2}$");
+                }
+
+            }
+            
+
+        }
+    }
+}
