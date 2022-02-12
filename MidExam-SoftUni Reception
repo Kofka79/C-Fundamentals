@@ -1,0 +1,40 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Numerics;
+
+namespace DateYime
+{
+    class Program
+    {
+
+        static void Main(string[] args)
+        {
+            int firstEmploye = int.Parse(Console.ReadLine());
+            int secondEmploye = int.Parse(Console.ReadLine());
+            int thirdEmploye = int.Parse(Console.ReadLine());
+            int studentsCount = int.Parse(Console.ReadLine());
+
+            int timeNeeded = 0;
+            int acceptedStudents = 0;
+            int hour = 0;
+
+            while (acceptedStudents<studentsCount)
+            {
+                acceptedStudents += firstEmploye + secondEmploye + thirdEmploye;
+                hour++;
+                if (hour%4==0)
+                {
+                    hour++;
+                }
+
+            }
+            Console.WriteLine($"Time needed: {hour}h.");
+
+        }
+    }
+}
+
+
+
+
