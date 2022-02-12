@@ -1,0 +1,48 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Numerics;
+
+namespace DateYime
+{
+    class Program
+    {
+
+        static void Main(string[] args)
+        {
+            double totalFood = double.Parse(Console.ReadLine());
+            double totalHay = double.Parse(Console.ReadLine());
+            double totalCover = double.Parse(Console.ReadLine());
+            double pigsWeight = double.Parse(Console.ReadLine());
+
+            if (totalCover == 0 || totalFood == 0 || totalHay == 0)
+            {
+                Console.WriteLine($"Merry must go to the pet store!");
+                return;
+            }
+            for (int i = 1; i <= 30; i++)
+            {
+                totalFood -= 0.3;
+                if (i % 2 == 0)
+                {
+                    totalHay -= 0.05 * totalFood;
+                }
+                if (i % 3 == 0)
+                {
+                    totalCover -= pigsWeight / 3;
+                }
+                if (totalCover <= 0 || totalFood <= 0 || totalHay <= 0)
+                {
+                    Console.WriteLine($"Merry must go to the pet store!");
+                    return;
+                }
+            }
+            Console.WriteLine($"Everything is fine! Puppy is happy! Food: {totalFood:f2}, " +
+                $"Hay: {totalHay:f2}, Cover: {totalCover:f2}.");
+        }
+    }
+}
+
+
+
+
