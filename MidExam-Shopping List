@@ -1,0 +1,86 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Numerics;
+
+namespace DateYime
+{
+    class Program
+    {
+
+        static void Main(string[] args)
+         {
+            List<string> products = Console.ReadLine()
+                .Split("!", StringSplitOptions.RemoveEmptyEntries)
+                .ToList();
+            string command;
+            
+
+            while ((command = Console.ReadLine()) != "Go Shopping!")
+            {
+                string[] inputCommand = command.Split();
+                string action = inputCommand[0];
+                
+
+                if (action == "Urgent")
+                {
+                    string newItem = inputCommand[1];
+                    if (products.Contains(newItem))
+                    {
+                        continue;
+                    }
+                        else
+                        {
+                        products.Insert(0, newItem);
+                        }
+                    
+                }
+                else if (action == "Unnecessary")
+                {
+                    string newItem = inputCommand[1];
+                    if (products.Contains(newItem))
+                    {
+                        products.Remove(newItem);
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+                else if (action == "Correct")
+                {
+                    string oldItem = inputCommand[1];
+                    int index=products.IndexOf(inputCommand[1]);
+                    string newItem = inputCommand[2];
+                    if (products.Contains(oldItem))
+                    {
+                        products.RemoveAt(index);
+                        products.Insert(index, newItem);
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+                else if (action== "Rearrange")
+                {
+                    string newItem = inputCommand[1];
+                    if (products.Contains(newItem))
+                    {
+                        products.Remove(newItem);
+                        products.Add(newItem);
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+            }
+            Console.WriteLine(string.Join(", ",products));
+        }
+    }
+}
+
+
+
+
