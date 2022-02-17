@@ -1,0 +1,60 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Numerics;
+
+namespace DateYime
+{
+    class Program
+    {
+
+        static void Main(string[] args)
+         {
+            List<int> numbers = Console.ReadLine()
+                .Split()
+                .Select(int.Parse)
+                .ToList();
+            string command;
+            int counter = 0;
+
+            while ((command=Console.ReadLine())!="End")
+            {
+                int index = int.Parse(command);
+                if (index>=0&&index<numbers.Count)
+                {
+                 int targetValue = numbers[index];
+                 numbers[index] = -1;
+                    counter++;
+                    for (int i = 0; i < numbers.Count; i++)
+                    {
+                        if (numbers[i]>targetValue&&numbers[i]!=-1)
+                        {
+                            numbers[i] -= targetValue;
+                        }
+                        else if(numbers[i]<=targetValue&&numbers[i]!=-1)
+                        {
+                            numbers[i] += targetValue;
+                        }
+                    }
+                    
+
+                    
+
+                }
+                else
+                {
+                    continue;
+                }
+
+
+
+            }
+            Console.WriteLine($"Shot targets: {counter} -> {string.Join(" ", numbers)}");
+
+        }
+    }
+}
+
+
+
+
