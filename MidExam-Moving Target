@@ -1,0 +1,78 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Numerics;
+
+namespace DateYime
+{
+    class Program
+    {
+
+        static void Main(string[] args)
+         {
+            List<int> numbers = Console.ReadLine()
+                .Split()
+                .Select(int.Parse)
+                .ToList();
+            string command;
+            
+
+            while ((command = Console.ReadLine()) != "End")
+            {
+                string[] inputCommand = command.Split();
+                string action = inputCommand[0];
+                int index = int.Parse(inputCommand[1]);
+
+                if (action == "Shoot")
+                {
+                    int power = int.Parse(inputCommand[2]);
+                    if (index>=0&&index<numbers.Count)
+                    {
+                    numbers[index] -= power;
+                    if (numbers[index] <= 0)
+                    {
+                        numbers.RemoveAt(index);
+                    }
+                        else
+                        {
+                            continue;
+                        }
+
+                    }
+
+                }
+                else if (action == "Add")
+                {
+                    if (index>=0&&index<numbers.Count)
+                    {
+                        int value = int.Parse(inputCommand[2]);
+                        numbers.Insert(index, value);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid placement!");
+                    }
+                }
+                else if (action == "Strike")
+                {
+                        int radius = int.Parse(inputCommand[2]);
+                    if (index>=0&&index<numbers.Count&&(index-radius)>=0&&(index+radius)<numbers.Count)
+                    {
+                        numbers.RemoveRange((index-radius), 2*radius+1);
+                        
+                        
+                    }
+                    else
+                    {
+                        Console.WriteLine("Strike missed!");
+                    }
+                }
+            }
+            Console.WriteLine(string.Join("|", numbers));
+        }
+    }
+}
+
+
+
+
