@@ -1,0 +1,90 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Numerics;
+
+namespace DateYime
+{
+    class Program
+    {
+
+        static void Main(string[] args)
+         {
+            List<string> rooms = Console.ReadLine()
+                .Split("|", StringSplitOptions.RemoveEmptyEntries)
+                .ToList();
+            
+            int bitcoins = 0;
+            int currentHealth = 100;
+            int roomCounter = 0;
+
+            for (int i = 0; i < rooms.Count; i++)
+            {
+
+
+                string[] inputCommand = rooms[i].Split(" ", StringSplitOptions.RemoveEmptyEntries)
+                .ToArray();
+
+                string action = inputCommand[0];
+
+
+                if (action == "potion")
+                {
+                    int newHealt = int.Parse(inputCommand[1]);
+
+                    if (currentHealth + newHealt <= 100)
+                    {
+                        currentHealth += newHealt;
+                        Console.WriteLine($"You healed for {newHealt} hp.");
+                        Console.WriteLine($"Current health: {currentHealth} hp.");
+                        roomCounter++;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"You healed for {100-currentHealth} hp.");
+                        currentHealth = 100;
+                        Console.WriteLine($"Current health: {currentHealth} hp.");
+                        roomCounter++;
+                    }
+                }
+                else if (action == "chest")
+                {
+                    int foundBitcoins = int.Parse(inputCommand[1]);
+                    bitcoins += foundBitcoins;
+                    Console.WriteLine($"You found {foundBitcoins} bitcoins.");
+                    roomCounter++;
+                }
+                else
+                {
+                    string monster = inputCommand[0];
+                    int attack = int.Parse(inputCommand[1]);
+                    currentHealth -= attack;
+                    if (currentHealth > 0)
+                    {
+                        Console.WriteLine($"You slayed {monster}.");
+                        roomCounter++;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"You died! Killed by {monster}.");
+                        roomCounter++;
+
+                        Console.WriteLine($"Best room: {roomCounter}");
+                        return;
+                    }
+
+                }
+
+
+            } 
+            
+            Console.WriteLine($"You've made it!");
+                Console.WriteLine($"Bitcoins: {bitcoins}");
+            Console.WriteLine($"Health: {currentHealth}");
+        }
+    }
+}
+
+
+
+
